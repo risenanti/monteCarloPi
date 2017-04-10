@@ -4,6 +4,9 @@
 #include <math.h>
 #define SEED 35791246
 
+void startTime(void);
+void stopTime(void);
+
 int main(int argc, char* argv[])
 {
     long niter = 10000;
@@ -13,6 +16,10 @@ int main(int argc, char* argv[])
     double z;                       //Used to check if x^2+y^2<=1
     double pi;                      //holds approx value of pi
     int nodenum;
+
+
+    startTime(); //Prints starting time
+
 
     MPI_Init(&argc, &argv);                 //Start MPI
     MPI_Comm_rank(MPI_COMM_WORLD, &myid);           //get rank of node's process
@@ -86,6 +93,30 @@ int main(int argc, char* argv[])
     }
 
     MPI_Finalize();                     //Close the MPI instance
+
+    stopTime();				//Prints Final time at stop
+
     return 0;
+}
+
+
+void startTime(void)
+{
+    time_t rawtime;
+    struct tm * timeinfo;
+
+    time ( &rawtime );
+    timeinfo = localtime ( &rawtime );
+    printf ( "Current start time and date: %s", asctime (timeinfo) );
+}
+
+void stopTime(void)
+{
+    time_t rawtime;
+    struct tm * timeinfo;
+
+	time ( &rawtime );
+	timeinfo = localtime ( &rawtime );
+	printf ( "Top time and date: %s", asctime (timeinfo) );
 }
 
