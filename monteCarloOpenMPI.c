@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include "mpi.h"
 #include <math.h>
+#include <string.h>
+#include <time.h>
 #define SEED 35791246
 
 void startTime(void);
