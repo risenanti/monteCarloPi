@@ -1,0 +1,19 @@
+open mp
+
+icc -openmp monteCarloOpenMP.c -o monteCarloOMP
+
+
+open MPI
+
+gcc -lmpi -lm -o monteCarloMPI monteCarloOpenMPI.c
+
+
+#PBS -S /bin/bash       
+#PBS -q MCSR-4N  
+#PBS -l nodes=2:ppn=4       
+#PBS –l cput=00:10:00  
+#PBS -l mem=100MB           
+#PBS -N test               
+cd ${PBS_O_WORKDIR}
+. /usr/local/apps/mpt_2.sh 
+mpiexec-np 8 ./monteCarloMPI    

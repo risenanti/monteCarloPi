@@ -1,0 +1,9 @@
+#PBS -S /bin/bash
+#PBS -l nodes=1:ppn=4
+#PBS -l cput=00:10:00
+#PBS -l mem=100MB
+#PBS -N omp_test
+
+cd ${PBS_O_WORKDIR}
+. /usr/local/apps/intel_14.sh
+./hello
